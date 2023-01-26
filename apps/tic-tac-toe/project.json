@@ -1,0 +1,73 @@
+{
+  "root": "apps/tic-tac-toe",
+  "sourceRoot": "apps/tic-tac-toe/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/tic-tac-toe",
+        "index": "apps/tic-tac-toe/src/index.html",
+        "baseHref": "/",
+        "main": "apps/tic-tac-toe/src/main.tsx",
+        "polyfills": "apps/tic-tac-toe/src/polyfills.ts",
+        "tsConfig": "apps/tic-tac-toe/tsconfig.app.json",
+        "assets": [
+          "apps/tic-tac-toe/src/favicon.ico",
+          "apps/tic-tac-toe/src/assets"
+        ],
+        "styles": ["apps/tic-tac-toe/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/tic-tac-toe/src/environments/environment.ts",
+              "with": "apps/tic-tac-toe/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "tic-tac-toe:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "tic-tac-toe:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/tic-tac-toe/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/tic-tac-toe"],
+      "options": {
+        "jestConfig": "apps/tic-tac-toe/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

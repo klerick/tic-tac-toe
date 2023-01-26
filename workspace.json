@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "tic-tac-toe": "apps/tic-tac-toe",
+    "tic-tac-toe-e2e": "apps/tic-tac-toe-e2e"
+  }
+}
